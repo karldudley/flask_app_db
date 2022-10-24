@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Subscription Success
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Thank you for subscribing.</h1>
+        {% for subscriber in subscribers %}
+            <li>{{subscriber}}</li>
+        {% endfor %}
+    </div>
+{% endblock %}
