@@ -8,15 +8,15 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://gusznmbibpqwfr:435e408e3a6c6151bb72f048bce7d8659948df3c33a4fca19d064fc52ff07292@ec2-44-199-22-207.compute-1.amazonaws.com:5432/de270koaqqmr53'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialise the db
+db = SQLAlchemy(app)
 with app.app_context():
-    db = SQLAlchemy(app)
     db.drop_all()    
     db.create_all()
 # db.app = app
 # db.init_app(app)
 # Create db model
 class Friends(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    # id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
