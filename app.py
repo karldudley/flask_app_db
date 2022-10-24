@@ -2,18 +2,24 @@ from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-
+# creat app
 app = Flask(__name__)
+
+# set app config variables
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://gusznmbibpqwfr:435e408e3a6c6151bb72f048bce7d8659948df3c33a4fca19d064fc52ff07292@ec2-44-199-22-207.compute-1.amazonaws.com:5432/de270koaqqmr53'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 # Initialise the db
 db = SQLAlchemy(app)
-# with app.app_context():
-#     db.drop_all()    
-#     db.create_all()
-# db.app = app
-# db.init_app(app)
+
+# choose whether to reset db
+RESET = "no"
+if RESET == "yes":
+    with app.app_context():
+        db.drop_all()    
+        db.create_all()
+
 # Create db model
 class Friends(db.Model):
     __tablename__ = 'friends'
