@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+# Use source virtual/Scripts/activate to run in virtual shell
+
 # creat app
 app = Flask(__name__)
 
@@ -18,6 +20,8 @@ db = SQLAlchemy(app)
 # flask shell or flask --app <appname> shell
 # from app import db
 # db.create_all()
+# Use heroku pg:psql to connect to database through heroku command line
+# Then SELECT * FROM friends;
 RESET = "no"
 if RESET == "yes":
     with app.app_context():
