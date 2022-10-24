@@ -9,9 +9,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://gusznmbibpqwfr:435e408e3a6
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialise the db
 db = SQLAlchemy(app)
-with app.app_context():
-    db.drop_all()    
-    db.create_all()
+# with app.app_context():
+#     db.drop_all()    
+#     db.create_all()
 # db.app = app
 # db.init_app(app)
 # Create db model
