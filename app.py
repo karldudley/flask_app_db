@@ -1,14 +1,16 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-# Initialise the db
-db = SQLAlchemy()
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://gusznmbibpqwfr:435e408e3a6c6151bb72f048bce7d8659948df3c33a4fca19d064fc52ff07292@ec2-44-199-22-207.compute-1.amazonaws.com:5432/de270koaqqmr53'
-db.app = app
-db.init_app(app)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# db.app = app
+# db.init_app(app)
+# Initialise the db
+db = SQLAlchemy(app)
+
 # Create db model
 class Friends(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -16,7 +18,7 @@ class Friends(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     #create a function to return a string when we add something
-    def __repr__(self):
+    def __init__(self):
         return '<Friends %r>' % self.id
 
 # with app.app_context():
