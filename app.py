@@ -6,14 +6,18 @@ from datetime import datetime
 app = Flask(__name__)
 
 # set app config variables
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://gusznmbibpqwfr:435e408e3a6c6151bb72f048bce7d8659948df3c33a4fca19d064fc52ff07292@ec2-44-199-22-207.compute-1.amazonaws.com:5432/de270koaqqmr53'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db' # flask sqlite db
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://gusznmbibpqwfr:435e408e3a6c6151bb72f048bce7d8659948df3c33a4fca19d064fc52ff07292@ec2-44-199-22-207.compute-1.amazonaws.com:5432/de270koaqqmr53' # heroku postgres db
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialise the db
 db = SQLAlchemy(app)
 
-# choose whether to reset db
+# choose whether to reset db when the server restarts
+# Alternatively, the db can be setup using a flask shell
+# flask shell or flask --app <appname> shell
+# from app import db
+# db.create_all()
 RESET = "no"
 if RESET == "yes":
     with app.app_context():
@@ -50,7 +54,6 @@ def index():
 
 @app.route('/about')
 def about():
-    title = "About Karl Dudley"
     names = ["Karl", "Mary", "Wes", "Sally"]
     return render_template("about.html", names=names)
 
