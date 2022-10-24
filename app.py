@@ -5,8 +5,8 @@ from datetime import datetime
 db = SQLAlchemy()
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://gusznmbibpqwfr:435e408e3a6c6151bb72f048bce7d8659948df3c33a4fca19d064fc52ff07292@ec2-44-199-22-207.compute-1.amazonaws.com:5432/de270koaqqmr53'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://gusznmbibpqwfr:435e408e3a6c6151bb72f048bce7d8659948df3c33a4fca19d064fc52ff07292@ec2-44-199-22-207.compute-1.amazonaws.com:5432/de270koaqqmr53'
 db.app = app
 db.init_app(app)
 # Create db model
