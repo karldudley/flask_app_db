@@ -95,6 +95,18 @@ def update(id):
     else:
         return render_template("update.html", friend_to_update=friend_to_update)
 
+# Create Custom Error Pages
+
+# Invalid URL
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
+
+# Internal Server Error
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template("500.html"), 500
+
 ## Main
 
 if __name__ == "__main__":
